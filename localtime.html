@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2 id="countdown-timer"></h2>
+    </body>
+    <script>
+        function countdownTimer(seconds){
+        if(seconds <=0){ 
+            document.getElementById("countdown-timer").innerHTML='She is mine now!';} 
+        else{
+            seconds = seconds -1;
+            var c_yrs = Math.floor(seconds / (365*60*60*24))+0;
+            var c_mon = Math.floor((seconds - c_yrs * 365*60*60*24) / (30*60*60*24))+0; 
+            var c_day = Math.floor((seconds - c_yrs * 365*60*60*24 - c_mon*30*60*60*24)/ (60*60*24))+0;
+            var c_hrs = Math.floor((seconds - c_yrs * 365*60*60*24 - c_mon*30*60*60*24 - c_day*60*60*24)/ (60*60))+0;
+            var c_min = Math.floor((seconds - c_yrs * 365*60*60*24 - c_mon*30*60*60*24 - c_day*60*60*24 - c_hrs*60*60)/60)+0;
+            var c_sec = Math.floor((seconds - c_yrs * 365*60*60*24 - c_mon*30*60*60*24 - c_day*60*60*24 - c_hrs*60*60 - c_min*60))+0;
+            if(c_yrs <= 1){var n_yrs = ' year '}
+            else{var n_yrs = ' years '}
+            if(c_mon <= 1){var n_mon = ' month '}
+            else{var n_mon = ' months '}
+            if(c_day <= 1){var n_day = ' day '}
+            else{var n_day = ' days '}
+            if(c_hrs <= 1){var n_hrs = ' hour '}
+            else{var n_hrs = ' hours '}
+            if(c_min <= 1){var n_min = ' minute '}
+            else{var n_min = ' minutes '}
+            if(c_sec <= 1){var n_sec = ' second '}
+            else{var n_sec = ' seconds '}
+            document.getElementById("countdown-timer").innerHTML= "She will be mine after " + c_yrs + n_yrs + c_mon + n_mon + c_day + n_day + c_hrs + n_hrs + c_min + n_min + c_sec + n_sec;
+            setTimeout("countdownTimer("+seconds+")",999);
+            }
+        }
+        //var target_date = new Date(year,month,day,hour,minutes,seconds).getTime();
+        var target_date = new Date(2027,3,19,00,00,00).getTime();
+        var current_date = new Date().getTime(); 
+        var seconds_left = (target_date - current_date) / 1000;
+        countdownTimer(seconds_left);
+    </script>
+</html>
